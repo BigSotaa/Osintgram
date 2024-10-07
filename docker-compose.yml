@@ -1,8 +1,13 @@
-version: '3.7'
+version: '3.8'  # Specify the version of the Compose file
 
 services:
-  osintgram:
-    container_name: osintgram
-    build: .
+  app:
+    build:
+      context: .  # The directory containing your Dockerfile
+      dockerfile: Dockerfile  # Specify the Dockerfile if it's not named 'Dockerfile'
+    ports:
+      - "5000:5000"  # Map the container's port to the host
     volumes:
-      - ./output:/home/osintgram/output
+      - .:/home/osintgram  # Optional: Mount the current directory to the container
+    environment:
+      - ENV_VAR_NAME=value  # Optional: Define environment variables
